@@ -11,3 +11,20 @@ Temel Bilgiler
 * Claims(key-value)
 * Role
 * Üçüncü taraf kimlik doğrulaması (Third party authentication)
+
+---
+
+Kullanılan paketler
+
+*Microsoft.EntityFrameworkCore 7.0.12
+*Microsoft.EntityFrameworkCore.SqlServer 7.0.12
+*Microsoft.EntityFrameworkCore.Tools 7.0.12
+*Microsoft.AspNetCore.Identity.EntityFrameworkCore 7.0.12
+
+---
+
+IdentityDbContext
+
+    *IdentityUser Entity
+    *IdentityRole Entity
+

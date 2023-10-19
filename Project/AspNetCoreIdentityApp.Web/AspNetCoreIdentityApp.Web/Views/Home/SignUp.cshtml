@@ -1,0 +1,63 @@
+﻿@model SignUpViewModel
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+@{
+    ViewData["Title"] = "SignUp";
+}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h2>Kullanıcı Kayıt Formu</h2>
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-info" role="alert">
+                <span>   @TempData["SuccessMessage"];</span>
+
+            </div>
+
+        }
+        @TempData["SuccessMessage"];
+        <form asp-controller="Home" asp-action="SignUp" method="post">
+            <div class="row mb-3">
+                <div class="col-md-8">
+                    <label for="UserName" class="col-md-4 col-form-label" asp-for="UserName"></label>
+
+                    <input asp-for="UserName" class="form-control">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-8">
+                    <label for="Email" class="col-md-2 col-form-label" asp-for="Email"></label>
+
+                    <input asp-for="Email" class="form-control">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-8">
+                    <label for="Phone" class="col-md-2 col-form-label" asp-for="Phone"></label>
+
+                    <input asp-for="Phone" class="form-control">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-8">
+                    <label for="Password" class="col-md-2 col-form-label" asp-for="Password"></label>
+
+                    <input asp-for="Password" class="form-control">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-8">
+                    <label for="PasswordConfirm" class="col-md-2 col-form-label" asp-for="PasswordConfirm"></label>
+
+                    <input asp-for="PasswordConfirm" class="form-control">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-8 offset-md-4">
+                    <button type="submit" class="btn btn-primary">Kayıt Ol</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
