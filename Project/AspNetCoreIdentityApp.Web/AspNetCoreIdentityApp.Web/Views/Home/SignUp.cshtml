@@ -2,21 +2,22 @@
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 @{
     ViewData["Title"] = "SignUp";
-}
+    var SuccessMessage = TempData["SuccessMessage"]; // TempData'dan veriyi almak
+    }
 <div class="row">
     <div class="col-md-8 offset-md-2">
         <h2>Kullanıcı Kayıt Formu</h2>
 
-        @if (TempData["SuccessMessage"] != null)
+        @if (@SuccessMessage != null)
         {
             <div class="alert alert-info" role="alert">
-                <span>   @TempData["SuccessMessage"];</span>
+           @SuccessMessage
 
             </div>
 
         }
-        @TempData["SuccessMessage"];
-        <form asp-controller="Home" asp-action="SignUp" method="post">
+  
+        <form asp-controller="Home" asp-action="SignUp" >
             <div class="row mb-3">
                 <div class="col-md-8">
                     <label for="UserName" class="col-md-4 col-form-label" asp-for="UserName"></label>

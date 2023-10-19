@@ -14,14 +14,14 @@ namespace AspNetCoreIdentityApp.Web.ViewModels
             PasswordConfirm = passwordconfirm;
         }
         [Display(Name ="Kullanıcı Adı :")]
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
         [Display(Name = "Email :")]
-        public string Email { get; set; }
+        public string? Email { get; set; }
         [Display(Name = "Telefon :")]
-        public string Phone { get; set; }
+        public string? Phone { get; set; }
         [Display(Name = "Şifre :")]
-        public string Password { get; set; }
+        public string? Password { get; set; }
         [Display(Name = "Şifre Tekrar :")]
-        public string PasswordConfirm { get; set; }
+        public string? PasswordConfirm { get; set; }
     }
 }
