@@ -8,8 +8,8 @@
     var SuccessMessage = TempData["SuccessMessage"]; // TempData'dan veriyi almak
 }
 <div class="row">
-    <div class="col-md-8 offset-md-2">
-        <h2>Kullanıcı Kayıt Formu</h2>
+    <div class="col-md-6 offset-md-3">
+        <h2>Kullanıcı Kayıt</h2>
 
         @if (@SuccessMessage != null)
         {
@@ -22,45 +22,45 @@
 
         <form asp-controller="Home" asp-action="SignUp">
             <div class="row mb-3">
-               
+                <label for="UserName" class="col-md-4 col-form-label" asp-for="UserName"></label>
                 <div class="col-md-8">
-                    <label for="UserName" class="col-md-4 col-form-label" asp-for="UserName"></label>
+                 
                     <input asp-for="UserName" class="form-control">
                     <span class="text-danger" asp-validation-for="UserName"></span>
                 </div>
             </div>
             
             <div class="row mb-3">
-               
+                <label for="Email" class="col-md-4 col-form-label" asp-for="Email"></label>
                 <div class="col-md-8">
-                    <label for="Email" class="col-md-2 col-form-label" asp-for="Email"></label>
+                 
                     <input asp-for="Email" class="form-control">
                     <span class="text-danger" asp-validation-for="Email"></span>
                 </div>
             </div>
            
             <div class="row mb-3">
-               
+                <label for="Phone" class="col-md-4 col-form-label" asp-for="Phone"></label>
                 <div class="col-md-8">
-                    <label for="Phone" class="col-md-2 col-form-label" asp-for="Phone"></label>
+                   
                     <input asp-for="Phone" class="form-control">
                     <span class="text-danger" asp-validation-for="Phone"></span>
                 </div>
             </div>
       
             <div class="row mb-3">
-                
+                <label for="Password" class="col-md-4 col-form-label" asp-for="Password"></label>
                 <div class="col-md-8">
-                    <label for="Password" class="col-md-2 col-form-label" asp-for="Password"></label>
+                    
                     <input asp-for="Password" class="form-control">
                     <span class="text-danger" asp-validation-for="Password"></span>
                 </div>
             </div>
             
             <div class="row mb-3">
-               
+                <label for="PasswordConfirm" class="col-md-4 col-form-label" asp-for="PasswordConfirm"></label>
                 <div class="col-md-8">
-                    <label for="PasswordConfirm" class="col-md-2 col-form-label" asp-for="PasswordConfirm"></label>
+                 
                     <input asp-for="PasswordConfirm" class="form-control">
                     <span class="text-danger" asp-validation-for="PasswordConfirm"></span>
                 </div>
