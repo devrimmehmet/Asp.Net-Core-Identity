@@ -46,7 +46,9 @@ namespace AspNetCoreIdentityApp.Web.Controllers
                 ModelState.AddModelError(string.Empty, "Bu telefon numarası zaten kullanılıyor.");
                 return View(request);
             }
-            var identityResult = await _userManager.CreateAsync(new() { UserName = request.UserName, PhoneNumber = request.Phone, Email = request.Email }, request.PasswordConfirm);
+            #pragma warning disable CS8604 // Possible null reference argument.  Hataları göstermemesi için
+            var identityResult = await _userManager.CreateAsync(new() { UserName = request.UserName, PhoneNumber = request.Phone, Email = request.Email }, password: request.PasswordConfirm);
+            #pragma warning restore CS8604 // Possible null reference argument.  Hataları göstermemesi için
             if (identityResult.Succeeded)
             {
 
