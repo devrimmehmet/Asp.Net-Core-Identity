@@ -35,10 +35,21 @@ namespace AspNetCoreIdentityApp.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> SignUp(SignUpViewModel request)
         {
-            var identityResult = await _userManager.CreateAsync(new() { UserName = request.UserName, PhoneNumber = request.Phone, Email = request.Email }, request.PasswordConfirm);
+        
 
+            if (!ModelState.IsValid)
+            {
+                return  View();
+            }
+            if (_userManager.Users.Any(u => u.PhoneNumber == request.Phone))
+            {
+                ModelState.AddModelError(string.Empty, "Bu telefon numarası zaten kullanılıyor.");
+                return View(request);
+            }
+            var identityResult = await _userManager.CreateAsync(new() { UserName = request.UserName, PhoneNumber = request.Phone, Email = request.Email }, request.PasswordConfirm);
             if (identityResult.Succeeded)
             {
+
                 TempData["SuccessMessage"] = "Üyelik İşlemi Başarıyla Gerçekleşmiştir.";
 
                 return RedirectToAction(nameof(HomeController.SignUp));
