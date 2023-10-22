@@ -27,12 +27,13 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                      
+
                     </ul>
-                </div>       
-                <a class="btn btn-outline-success m-1" asp-controller="Home" asp-action="SignIn">Giriş Yap</a>
-                <a class="btn btn-outline-success" asp-controller="Home" asp-action="SignUp" >Kayıt Ol</a>
-         
+                </div>
+
+                <partial name="_NavbarLogin" />
+                @* <partial name="Home/_NavbarLogin.cshtml"></partial> *@
+
 
             </div>
         </nav>
