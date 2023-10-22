@@ -3,18 +3,20 @@ using AspNetCoreIdentityApp.Web.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-
+using AspNetCoreIdentityApp.Web.Extensions;
 namespace AspNetCoreIdentityApp.Web.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
 
-        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager)
+        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _logger = logger;
             _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         public IActionResult Index()
@@ -31,7 +33,31 @@ namespace AspNetCoreIdentityApp.Web.Controllers
         {
             return View();
         }
-     
+        [HttpPost]
+        public async Task<IActionResult> SignIn(SignInViewModel request, string? returnUrl = null)
+        {
+            returnUrl = returnUrl ?? Url.Action("Index", "Home");
+
+            var hasUser = await _userManager.FindByEmailAsync(request.Email);
+            if (hasUser == null)
+            {
+                ModelState.AddModelError(string.Empty, "Email veya şifre yanlış");
+                return View();
+            }
+#pragma warning disable CS8604 // Possible null reference argument.
+            var signInResult = await _signInManager.PasswordSignInAsync(hasUser, password: request.Password, request.RememberMe, false);
+#pragma warning restore CS8604 // Possible null reference argument.
+
+            if (signInResult.Succeeded)
+            {
+                return Redirect(url: returnUrl);
+
+            }
+
+            ModelState.AddModelErrorList(new List<string>() { "Email veya şifreniz yanlış." });
+            return View();
+
+        }
         public IActionResult SignUp()
         {
             return View();
@@ -39,20 +65,20 @@ namespace AspNetCoreIdentityApp.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> SignUp(SignUpViewModel request)
         {
-        
+
 
             if (!ModelState.IsValid)
             {
-                return  View();
+                return View();
             }
             if (_userManager.Users.Any(u => u.PhoneNumber == request.Phone))
             {
                 ModelState.AddModelError(string.Empty, "Bu telefon numarası zaten kullanılıyor.");
                 return View(request);
             }
-            #pragma warning disable CS8604 // Possible null reference argument.  Hataları göstermemesi için
+#pragma warning disable CS8604 // Possible null reference argument.  Hataları göstermemesi için
             var identityResult = await _userManager.CreateAsync(new() { UserName = request.UserName, PhoneNumber = request.Phone, Email = request.Email }, password: request.PasswordConfirm);
-            #pragma warning restore CS8604 // Possible null reference argument.  Hataları göstermemesi için
+#pragma warning restore CS8604 // Possible null reference argument.  Hataları göstermemesi için
             if (identityResult.Succeeded)
             {
 
@@ -61,11 +87,7 @@ namespace AspNetCoreIdentityApp.Web.Controllers
                 return RedirectToAction(nameof(HomeController.SignUp));
             }
 
-            foreach (IdentityError item in identityResult.Errors)
-            {
-                ModelState.AddModelError(string.Empty, item.Description);
-            }
-
+            ModelState.AddModelErrorList(identityResult.Errors.Select(x => x.Description).ToList());
             return View(request);
         }
 
