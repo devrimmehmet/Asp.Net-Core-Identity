@@ -13,10 +13,11 @@ namespace AspNetCoreIdentityApp.Web.Controllers
             _signInManager = signInManager;
         }
 
-        public IActionResult LogOut()
+      
+        public async Task LogOut()
         {
           _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+          
         }
     }
 }
