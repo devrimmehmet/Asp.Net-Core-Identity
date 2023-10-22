@@ -38,7 +38,7 @@ namespace AspNetCoreIdentityApp.Web.Controllers
         {
             returnUrl = returnUrl ?? Url.Action("Index", "Home");
 
-            var hasUser = await _userManager.FindByEmailAsync(request.Email);
+            var hasUser = await _userManager.FindByEmailAsync(email: request.Email);
             if (hasUser == null)
             {
                 ModelState.AddModelError(string.Empty, "Email veya şifre yanlış");
