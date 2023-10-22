@@ -18,6 +18,9 @@ namespace AspNetCoreIdentityApp.Web.Extensions
                 options.Password.RequireUppercase = false;
                 options.Password.RequireDigit = false;
 
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3); //3 dakika boyunca kitleniyor.
+                options.Lockout.MaxFailedAccessAttempts = 5; //5 başarısız deneme sonunda kilitleniyor.
+
             }).AddPasswordValidator<PasswordValidator>().AddUserValidator<UserValidator>().AddErrorDescriber<LocalizationsIdentityErrorDescriber>().AddEntityFrameworkStores<AppDbContext>();
         }
     }

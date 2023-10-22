@@ -45,7 +45,7 @@ namespace AspNetCoreIdentityApp.Web.Controllers
                 return View();
             }
 #pragma warning disable CS8604 // Possible null reference argument.
-            var signInResult = await _signInManager.PasswordSignInAsync(hasUser, password: request.Password, request.RememberMe, false);
+            var signInResult = await _signInManager.PasswordSignInAsync(hasUser, password: request.Password, request.RememberMe, true);
 #pragma warning restore CS8604 // Possible null reference argument.
 
             if (signInResult.Succeeded)
@@ -53,8 +53,14 @@ namespace AspNetCoreIdentityApp.Web.Controllers
                 return Redirect(url: returnUrl);
 
             }
+            if (signInResult.IsLockedOut)
+            {
+                ModelState.AddModelErrorList(new List<string>() { "3 dakika boyunca giriş yapamazsınız." });
+                return View();
+            }
 
-            ModelState.AddModelErrorList(new List<string>() { "Email veya şifreniz yanlış." });
+            ModelState.AddModelErrorList(new List<string>() { "Email veya şifreniz yanlış.", $"(Başarısız Giriş Sayısı: {await _userManager.GetAccessFailedCountAsync(hasUser)})" });
+            
             return View();
 
         }
