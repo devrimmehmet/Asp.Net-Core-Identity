@@ -1,4 +1,7 @@
 ﻿@model SignInViewModel
+@section Scripts{
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
 @{
     ViewData["Title"] = "SignIn";
     var SuccessMessage = TempData["SuccessMessage"]; // TempData'dan veriyi almak
@@ -35,13 +38,21 @@
                     <span class="text-danger" asp-validation-for="Password"></span>
                 </div>
             </div>
-          
-            <div class="mb-3 form-check">
-                <input  class="form-check-input" asp-for="RememberMe" checked>
-                <label class="form-check-label" asp-for="RememberMe"></label>
+<div class="row">
+                <div class="col-md-4 ">
+                    <div class="mb-4 form-check">
+                        <input class="form-check-input" asp-for="RememberMe" checked>
+                        <label class="form-check-label" asp-for="RememberMe"></label>
+                    </div>
+                </div>
+                <div class="col-md-4 ">
+                    <a asp-controller="Home" asp-action="ResetPassword" class="btn btn-outline-secondary btn-sm float-end">Şifremi Unuttum</a>
+                </div>
             </div>
-
+                <row>
             <button type="submit" class="btn btn-primary">Giriş Yap</button>
+            </row>
+
         </form>
     </div>
 </div>
