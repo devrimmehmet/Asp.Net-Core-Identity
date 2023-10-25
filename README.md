@@ -35,5 +35,5 @@ IdentityDbContext
 * Password Validasyonları
 * LogOut
 * ResetPassword(ForgetPassword)
-** Security Stamp
-** Concurrency Stamp
+* Security Stamp
+* Concurrency Stamp
