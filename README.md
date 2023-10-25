@@ -28,3 +28,12 @@ IdentityDbContext
     *IdentityUser Entity
     *IdentityRole Entity
 
+---
+
+*SignUp
+*SignIn
+*Password Validasyonları
+*LogOut
+*ResetPassword(ForgetPassword)
+**Security Stamp
+**Concurrency Stamp
