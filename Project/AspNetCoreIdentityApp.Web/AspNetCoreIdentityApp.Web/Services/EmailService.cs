@@ -16,7 +16,7 @@ namespace AspNetCoreIdentityApp.Web.Services
 
         public async Task SendResetPasswordEmail(string resetPasswordEmailLink, string ToEmail)
         {
-            var smtpClient = new SmtpClient();
+            var smtpClient = new SmtpClient()!;
             smtpClient.Host = _emailSettings.Host!;
             smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtpClient.UseDefaultCredentials =false;
@@ -25,7 +25,7 @@ namespace AspNetCoreIdentityApp.Web.Services
             smtpClient.EnableSsl =true;
             
 
-            var mailMessage= new MailMessage();
+            var mailMessage= new MailMessage()!;
             mailMessage.From = new MailAddress(_emailSettings.Email!);
             mailMessage.To.Add(ToEmail);
             mailMessage.Subject = "Localhost || Şifre Sıfırlama Linki";

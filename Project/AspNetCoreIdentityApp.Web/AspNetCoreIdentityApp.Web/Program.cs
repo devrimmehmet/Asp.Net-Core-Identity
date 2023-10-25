@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using AspNetCoreIdentityApp.Web.Extensions;
 using AspNetCoreIdentityApp.Web.OptionModels;
 using AspNetCoreIdentityApp.Web.Services;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,13 +13,17 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon"));
 });
+builder.Services.Configure<SecurityStampValidatorOptions>(options =>
+    {
+        options.ValidationInterval = TimeSpan.FromMinutes(30);//default değeri 30dakika zaten.
+    });
 builder.Services.AddIdentityWithExtension();
 builder.Services.AddScoped<IEmailService, EmailService>();
 
 
 builder.Services.ConfigureApplicationCookie(opt =>
 {
-    var cookieBuilder = new CookieBuilder();
+    var cookieBuilder = new CookieBuilder()!;
     cookieBuilder.Name = "UdemyAppCookie";
     opt.LoginPath = new PathString("/Home/SignIn");
     opt.LogoutPath = new PathString("/Member/LogOut");

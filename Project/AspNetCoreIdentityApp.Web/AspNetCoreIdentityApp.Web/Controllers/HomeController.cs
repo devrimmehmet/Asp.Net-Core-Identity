@@ -127,6 +127,7 @@ namespace AspNetCoreIdentityApp.Web.Controllers
             if (result.Succeeded)
             {
                 TempData["SuccessMessage"] = "Şifreniz başarıyla yenilenmiştir.";
+             //  await _userManager.UpdateSecurityStampAsync(hasUser); isteğe bağlı securityStamp değerini güncelleme.
             }
             else
             {
