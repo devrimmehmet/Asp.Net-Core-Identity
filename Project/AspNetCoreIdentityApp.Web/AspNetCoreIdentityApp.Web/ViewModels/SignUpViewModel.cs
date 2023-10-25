@@ -28,12 +28,12 @@ namespace AspNetCoreIdentityApp.Web.ViewModels
         [Display(Name = "Telefon :")]
         [Required(ErrorMessage = "Telefon alanı boş bırakılamaz.")]
         public string? Phone { get; set; }
-       
-        
+
+        [DataType(DataType.Password)]
         [Required(ErrorMessage = "Şifre alanı boş bırakılamaz.")]
         [Display(Name = "Şifre :")]
         public string? Password { get; set; }
-
+        [DataType(DataType.Password)]
         [Compare(nameof(Password),ErrorMessage ="Şifreler aynı değildir.")]
         [Required(ErrorMessage = "Şifre Tekrar alanı boş bırakılamaz.")]
         [Display(Name = "Şifre Tekrar :")]
