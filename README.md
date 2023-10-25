@@ -30,10 +30,10 @@ IdentityDbContext
 
 ---
 
-*SignUp
-*SignIn
-*Password Validasyonları
-*LogOut
-*ResetPassword(ForgetPassword)
-**Security Stamp
-**Concurrency Stamp
+* SignUp
+* SignIn
+* Password Validasyonları
+* LogOut
+* ResetPassword(ForgetPassword)
+** Security Stamp
+** Concurrency Stamp
