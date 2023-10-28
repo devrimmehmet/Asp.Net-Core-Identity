@@ -1,2 +1,32 @@
-﻿<h2>Hoşgeldiniz @User.Identity!.Name.</h2>
+﻿@{
+    ViewData["Title"] = "Index";
+
+}
+
+@model UserViewModel
+
+
+<div class="row">
+    <div class="col-md-6 offset-3 ">
+        <h2>Kullanıcı Bilgileri</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Kullanıcı Adı</td>
+                    <td>Email</td>
+                    <td>Telefon No</td>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.UserName</td>
+                    <td>@Model.Email</td>
+                    <td>@Model.PhoneNumber</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
 
