@@ -4,6 +4,7 @@ using AspNetCoreIdentityApp.Web.Extensions;
 using AspNetCoreIdentityApp.Web.OptionModels;
 using AspNetCoreIdentityApp.Web.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,8 @@ builder.Services.Configure<SecurityStampValidatorOptions>(options =>
     {
         options.ValidationInterval = TimeSpan.FromMinutes(30);//default değeri 30dakika zaten.
     });
+builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Directory.GetCurrentDirectory()));
+
 builder.Services.AddIdentityWithExtension();
 builder.Services.AddScoped<IEmailService, EmailService>();
 
