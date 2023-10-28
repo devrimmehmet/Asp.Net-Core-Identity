@@ -48,7 +48,7 @@ namespace AspNetCoreIdentityApp.Web.Controllers
             {
                 return View();
             }
-            var currentUser =await _userManager.FindByNameAsync(User.Identity!.Name!);
+            var currentUser =(await _userManager.FindByNameAsync(User.Identity!.Name!))!;
             var checkOldPassword =await _userManager.CheckPasswordAsync(currentUser,request.PasswordOld);
             if (!checkOldPassword)
             {
@@ -61,7 +61,7 @@ namespace AspNetCoreIdentityApp.Web.Controllers
                 ModelState.AddModelErrorList(resultChangePassword.Errors.Select(x=>x.Description).ToList());
                 return View();
             }
-            await _userManager.UpdateSecurityStampAsync(currentUser);
+            await _userManager.UpdateSecurityStampAsync(currentUser!);
             await _signInManager.SignOutAsync();
             await _signInManager.PasswordSignInAsync(currentUser,request.PasswordNew,true,false);
             TempData["SuccessMessage"] = "Şifreniz başarıyla değiştirilmiştir.";
