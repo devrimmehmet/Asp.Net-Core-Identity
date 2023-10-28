@@ -37,3 +37,5 @@ IdentityDbContext
 * ResetPassword(ForgetPassword)
 * Security Stamp
 * Concurrency Stamp
+* UserIdentity Ek Property oluşturma (Picture,City,BirthDate,Gender)
+* Rol Bazlı Yetkilendirme(Role-based authorization, Claims-based authorization,Policy-based authorization)
