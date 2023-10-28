@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AspNetCoreIdentityApp.Web.Models;
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
 namespace AspNetCoreIdentityApp.Web.ViewModels
@@ -20,9 +21,10 @@ namespace AspNetCoreIdentityApp.Web.ViewModels
         [Display(Name = "Telefon :")]
         [Required(ErrorMessage = "Telefon alanı boş bırakılamaz.")]
         public string Phone { get; set; } = null!;
+        [DataType(DataType.Date)]
 
         [Display(Name = "Doğum Tarihi :")]
-        public string? BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
        
         [Display(Name = "Şehir :")]
         public string? City { get; set; }
@@ -31,7 +33,7 @@ namespace AspNetCoreIdentityApp.Web.ViewModels
         public IFormFile? Picture { get; set; }
        
         [Display(Name = "Cinsiyet :")]
-        public byte? Gender { get; set; }
+        public Gender? Gender { get; set; }
 
 
     }
