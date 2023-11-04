@@ -38,4 +38,6 @@ IdentityDbContext
 * Security Stamp
 * Concurrency Stamp
 * UserIdentity Ek Property oluşturma (Picture,City,BirthDate,Gender)
-* Rol Bazlı Yetkilendirme(Role-based authorization, Claims-based authorization,Policy-based authorization)
+* Rol Bazlı Yetkilendirme(Role-based authorization) "Admin,User,Editor"
+* Claims Bazlı Yetkilendirme(Claims-based authorization)
+* Policy Bazlı Yetkilendirme(Policy-based authorization)
