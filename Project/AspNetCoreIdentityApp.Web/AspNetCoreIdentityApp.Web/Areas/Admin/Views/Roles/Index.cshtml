@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var SuccessMessage = TempData["SuccessMessage"]; // TempData'dan veriyi almak
+
+}
+@model List< AdminModel.RoleViewModel>
+
+<div class="row">
+
+    <div class="col-md-6 offset-md-2">
+        <h2>Roller</h2>
+    </div>
+    <div class="col-md-2">
+        <a class="btn btn-primary" asp-controller="Roles" asp-action="RoleCreate" asp-area="admin">Rol Ekle</a>
+    </div>
+
+</div>
+<div class="col-md-8 offset-md-2">
+    @if (@SuccessMessage != null)
+    {
+        <div class="alert alert-info" role="alert">
+            @SuccessMessage
+        </div>
+
+    }
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>UserName</th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr >
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>
+                        <a class="btn btn-dark btn-sm" asp-area="admin" asp-controller="roles" asp-action="RoleUpdate" asp-route-id="@item.Id"> Rol Güncelle</a>
+                        <a class="btn btn-dark btn-sm my-1" asp-area="admin" asp-controller="roles" asp-action="RoleDelete" asp-route-id="@item.Id"> Rol Sil</a>
+                    </td>
+                
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+</div>
+
+
