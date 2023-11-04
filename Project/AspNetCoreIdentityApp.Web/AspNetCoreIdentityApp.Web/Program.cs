@@ -22,7 +22,7 @@ builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Directory.
 
 builder.Services.AddIdentityWithExtension();
 builder.Services.AddScoped<IEmailService, EmailService>();
-
+//builder.Services.AddHttpContextAccessor();
 
 builder.Services.ConfigureApplicationCookie(opt =>
 {
