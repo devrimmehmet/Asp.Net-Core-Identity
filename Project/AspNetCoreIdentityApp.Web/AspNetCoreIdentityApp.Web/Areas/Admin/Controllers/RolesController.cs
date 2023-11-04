@@ -5,10 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using AspNetCoreIdentityApp.Web.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Azure.Core;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AspNetCoreIdentityApp.Web.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Authorize("admin")]
     public class RolesController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -30,11 +31,13 @@ namespace AspNetCoreIdentityApp.Web.Areas.Admin.Controllers
             return View(roles);
         }
 
+        [Authorize(Roles ="role-action")]
         public IActionResult RoleCreate()
         {
             return View();
         }
         [HttpPost]
+        [Authorize(Roles = "role-action")]
         public async Task<IActionResult> RoleCreate(RoleCreateViewModel request)
         {
             var result = await _roleManager.CreateAsync(new AppRole() { Name = request.Name });
@@ -47,7 +50,7 @@ namespace AspNetCoreIdentityApp.Web.Areas.Admin.Controllers
 
             return RedirectToAction(nameof(RolesController.Index));
         }
-
+        [Authorize(Roles = "role-action")]
         public async Task<IActionResult> RoleUpdate(string id)
         {
             var roleToUpdate = await _roleManager.FindByIdAsync(id);
@@ -58,6 +61,7 @@ namespace AspNetCoreIdentityApp.Web.Areas.Admin.Controllers
             //Best Practice 
         }
         [HttpPost]
+        [Authorize(Roles = "role-action")]
         public async Task<IActionResult> RoleUpdate(RoleUpdateViewModel request)
         {
             var roleToUpdate = await _roleManager.FindByIdAsync(request.Id!) 
@@ -76,6 +80,7 @@ namespace AspNetCoreIdentityApp.Web.Areas.Admin.Controllers
             ViewData["SuccessMessage"] = "Rol bilgisi güncellenmiştir.";
             return View();
         }
+        [Authorize(Roles = "role-action")]
         public async Task<IActionResult> RoleDelete(string id)
         {
             var roleToDelete = await _roleManager.FindByIdAsync(id) ?? throw new Exception("Silinecek rol bulunamamıştır.");
@@ -89,6 +94,7 @@ namespace AspNetCoreIdentityApp.Web.Areas.Admin.Controllers
             return RedirectToAction(nameof(RolesController.Index));
 
         }
+        [Authorize(Roles = "role-action")]
         public async Task<IActionResult> AssignRoleToUser(string id)
         {
             var currentUser = (await _userManager.FindByIdAsync(id))!;
@@ -110,6 +116,7 @@ namespace AspNetCoreIdentityApp.Web.Areas.Admin.Controllers
             }
             return View(roleViewModelList);
         }
+        [Authorize(Roles = "role-action")]
         [HttpPost]
         public async Task<IActionResult> AssignRoleToUser(string userId, List<AssignRoleToUserViewModel> requestList)
         {
