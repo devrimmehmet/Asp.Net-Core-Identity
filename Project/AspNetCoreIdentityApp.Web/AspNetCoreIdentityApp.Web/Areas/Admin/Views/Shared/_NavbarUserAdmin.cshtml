@@ -1,0 +1,30 @@
+﻿@using System.Security.Claims;
+@if (User.Identity!.IsAuthenticated)
+{
+    <ul class="navbar-nav me-O">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                @User.Identity.Name
+            </a>
+            <ul class="dropdown-menu">
+              
+                @if(User.HasClaim(x => x.Type ==ClaimTypes.Role && x.Value=="admin")){
+            
+                   <li>
+                        <a class="dropdown-item" asp-area="" asp-controller="Member" asp-action="Claims">Claims</a>
+                   </li>
+
+                }
+                <li>
+                    <a class="dropdown-item" asp-area="" asp-route-returnurl="/Home/Index" asp-controller="Member" asp-action="LogOut">Çıkış Yap</a>
+                </li>
+
+            </ul>
+        </li>
+    </ul>
+}
+else
+{
+    <a class="btn btn-outline-success m-1" asp-controller="Home" asp-action="SignIn">Giriş Yap</a>
+    <a class="btn btn-outline-success" asp-controller="Home" asp-action="SignUp">Kayıt Ol</a>
+}

@@ -6,32 +6,32 @@
 @model UserViewModel
 
 <div class="row">
-    <div class="text-center" >
-     <user-picture-thumbnail class="rounded" picture-url="@Model.PictureUrl"></user-picture-thumbnail>
+    <div class="col-4 offset-4  text-center">
+        <user-picture-thumbnail class="img-fluid" picture-url="@Model.PictureUrl"></user-picture-thumbnail>
     </div>
 </div>
-
 <div class="row">
-    <div class="col-md-6 offset-3 text-center">
+    <div class="col-12 text-center">
+        <br />
+        <br />
         <h2>Kullanıcı Bilgileri</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <td>Kullanıcı Adı</td>
-                    <td>Email</td>
-                    <td>Telefon No</td>
-                </tr>
-
-            </thead>
-            <tbody>
-                <tr>
-                    <td>@Model.UserName</td>
-                    <td>@Model.Email</td>
-                    <td>@Model.PhoneNumber</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive mx-auto col-10 offset-1">
+            <table class="table ">
+                <thead>
+                    <tr>
+                        <td>Kullanıcı Adı</td>
+                        <td>Email</td>
+                        <td>Telefon No</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.UserName</td>
+                        <td>@Model.Email</td>
+                        <td>@Model.PhoneNumber</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-
 </div>
-
